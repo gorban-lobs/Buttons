@@ -1,7 +1,7 @@
 import tkinter as tk
 
 root = tk.Tk()
-root.geometry("250x315")
+# root.geometry("250x315")
 root.title("Кнопки")
 root.configure(background="#003344")
 
@@ -21,22 +21,24 @@ inc_button.config(font=("Courier", 15))
 
 def inc(event):
     num = show_label['text']
-    show_label['text'] = num + 1
+    if num == '' or num == 'empty':
+        show_label['text'] = 'empty'
+    else:
+        show_label['text'] = num + 1
 
 inc_button.bind('<Button-1>', inc)
 
-dec_button = tk.Button(root, text="Уменьшить", width=12, height=3)
+dec_button = tk.Button(root, text="Выход", width=12, height=3)
 dec_button.config(font=("Courier", 15))
 
-def вус(event):
-    num = show_label['text']
-    show_label['text'] = num - 1
+def exit(event):
+    root.destroy()
 
-dec_button.bind('<Button-1>', вус)
+dec_button.bind('<Button-1>', exit)
 
-show_label.pack()
-show_button.pack()
-inc_button.pack()
-dec_button.pack()
+show_label.pack(side='right')
+show_button.pack(side='right')
+inc_button.pack(side='right')
+dec_button.pack(side='right')
 
 root.mainloop()
